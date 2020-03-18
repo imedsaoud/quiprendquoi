@@ -1,0 +1,19 @@
+include ../partials/header.pug
+body
+  h1 Qui prend quoi ?
+  
+  h2 Créer un événement
+  form(method="post" action="/party")
+    div
+      label(for="name") Nom de l'événement
+      input(name="name" id="name" required minlength="3" placeholder="Fin du coronavirus")
+    div
+      label(for="author" required) Prenom
+      input(name="author" id="author" required minlength="3" placeholder="John")
+    div
+      label(for="date") Date de l'événement
+      input(name="date" id="date" type="date")
+    button(type="submit") Créer
+
+
+

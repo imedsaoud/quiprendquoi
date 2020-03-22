@@ -3,23 +3,27 @@ h1 Qui prend quoi ?
 h2= party.name
 h3 Créer par #{party.author}
 
-label(for="url") Partagez l'événement
-input(id="url" value=`${url}`)
+form(method="" action="")
+  label(for="url") Partagez l'événement
+  input(id="url" value=`${url}` data-clipboard=`${url}` data-share-url=`${url}` data-share-title=`${party.name}` data-share-text=`${party.author} vous invite à rejoindre l'événément ${party.name}`)
 
 h3 Tu ramène un truc ?
 form(method="post" action="/party/"+party._id+"/item")
   div
     label(for="user") Je suis
-    input(id="user" placeholder="Felix")
+    input(id="user" name="user" placeholder="Felix")
   div
     label(for="name") Je ramène
-    input(id="name" placeholder="Bouteille de fanta")
+    input(id="name" name="name" placeholder="Bouteille de fanta")
   button(type="submit") Ajout
 
 h3 On ramène déja :
 ul
   each item in items
-    li= item._id
+    li
+      div #{item.user} ramène :
+      div= item.name
+    
     form(method="post" action="/party/"+party._id+"/items/"+item._id+"/delete")
       button(type="submit") Supprimer
       

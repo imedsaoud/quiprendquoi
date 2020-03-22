@@ -1,9 +1,3 @@
 @import './vendors/reset.scss';
-
-form {
-  border: 1px solid blue;
-
-  div {
-    border: 1px solid red;
-  }
-}
+@import './config/media.scss';
+@import './blocs/newParty.scss';

@@ -10,6 +10,7 @@ app.listen(process.env.PORT, () => console.log(`Front app listening on port ${pr
 app.set('view engine', 'pug');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 app.get('/', function(req, res) {
   res.render('index', { title: 'Qui prend quoi ?' });
@@ -39,16 +40,13 @@ app.get('/party/:id', function(req, res) {
 });
 
 app.post('/party/:id/item', function(req, res) {
-  
   axios
   .post(`${process.env.API_URL}/party/${req.params.id}/items`, req.body)
   .then( res.redirect(`/party/${req.params.id}`))
   .catch((err) => res.send(err));
 });
 
-app.post('/party/:id/items/:itemId/delete', function(req, res) {
-  console.log(req.params.itemId);
-  
+app.post('/party/:id/items/:itemId/delete', function(req, res) { 
   axios
   .delete(`${process.env.API_URL}/party/${req.params.id}/items/${req.params.itemId}`, req.body)
   .then( res.redirect(`/party/${req.params.id}`))

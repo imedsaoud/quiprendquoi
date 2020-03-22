@@ -11,6 +11,7 @@ app.set('view engine', 'pug');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(express.static('pwa'));
 
 app.get('/', function(req, res) {
   res.render('index', { title: 'Qui prend quoi ?' });
